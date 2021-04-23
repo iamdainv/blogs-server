@@ -11,15 +11,18 @@ const portSchema = mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
+      required: false,
     },
     upVote: [],
     downVote: [],
     user: {
-      type: { type: Schema.Types.ObjectId, ref: 'User' },
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
     category: {
-      type: { type: Schema.Types.ObjectId, ref: 'Category' },
+      type: Schema.Types.ObjectId,
+      ref: 'Category',
       required: false,
     },
     isDraft: {
