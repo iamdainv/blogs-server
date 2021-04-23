@@ -1,8 +1,10 @@
 const express = require('express');
 const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
+const categoryRoute = require('./category.route');
+const postRoute = require('./post.route');
 const docsRoute = require('./docs.route');
-const config = require('../../config/config');
+// const config = require('../../config/config');
 
 const router = express.Router();
 
@@ -14,6 +16,14 @@ const defaultRoutes = [
   {
     path: '/users',
     route: userRoute,
+  },
+  {
+    path: '/category',
+    route: categoryRoute,
+  },
+  {
+    path: '/post',
+    route: postRoute,
   },
 ];
 
@@ -30,10 +40,10 @@ defaultRoutes.forEach((route) => {
 });
 
 /* istanbul ignore next */
-if (config.env === 'development') {
-  devRoutes.forEach((route) => {
-    router.use(route.path, route.route);
-  });
-}
+// if (config.env === 'development') {
+devRoutes.forEach((route) => {
+  router.use(route.path, route.route);
+});
+// }
 
 module.exports = router;
