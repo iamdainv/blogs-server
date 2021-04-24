@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const portSchema = mongoose.Schema(
+const commentSchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -20,14 +20,9 @@ const portSchema = mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    category: {
-      type: Schema.Types.ObjectId || null,
-      ref: 'Category',
-      required: false,
-    },
-    isDraft: {
-      type: Boolean,
-      default: true,
+    comment: {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
     },
   },
   {
@@ -36,8 +31,8 @@ const portSchema = mongoose.Schema(
 );
 
 /**
- * @typedef Post
+ * @typedef User
  */
-const Post = mongoose.model('Post', portSchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
-module.exports = Post;
+module.exports = Comment;

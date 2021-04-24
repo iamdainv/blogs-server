@@ -1,11 +1,21 @@
 const express = require('express');
-const { add, getAll, getPostId, changeVote } = require('../../controllers/post.controller');
+const {
+  add,
+  getAll,
+  getPostId,
+  changeVote,
+  getAllIsDraft,
+  updateDraft,
+  deletePost,
+} = require('../../controllers/post.controller');
 
 const router = express.Router();
 
 router.post('/add', add);
 router.get('/', getAll);
+router.get('/draft/:id', getAllIsDraft);
+router.put('/draft/:id', updateDraft);
 router.get('/:id', getPostId);
 router.put('/:id', changeVote);
-
+router.delete('/:id', deletePost);
 module.exports = router;
