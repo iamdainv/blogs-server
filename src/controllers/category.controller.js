@@ -243,9 +243,11 @@ const add = catchAsync(async (req, res) => {
 });
 
 const getAll = catchAsync(async (req, res) => {
-  Category.find({}, function (err, category) {
-    res.status(httpStatus.CREATED).send({ category });
-  });
+  Category.find({})
+    .sort([['createdAt', 1]])
+    .exec(function (err, category) {
+      res.status(httpStatus.CREATED).send({ category });
+    });
 });
 
 module.exports = { add, getAll };

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const { toJSON } = require('./plugins');
 
 const portSchema = mongoose.Schema(
   {
@@ -34,7 +35,7 @@ const portSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
+portSchema.plugin(toJSON);
 /**
  * @typedef Post
  */

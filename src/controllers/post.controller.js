@@ -10,13 +10,25 @@ const add = catchAsync(async (req, res) => {
 });
 
 const getAll = catchAsync(async (req, res) => {
-  Post.find({ isDraft: false })
-    .populate('user')
-    .populate('category')
-    .sort([['updatedAt', -1]])
-    .exec(function (err, post) {
-      res.status(200).send({ post });
-    });
+  const idCategory = req.query.category || null;
+
+  if (idCategory !== null) {
+    await Post.find({ isDraft: false, category: idCategory })
+      .populate('user')
+      .populate('category')
+      .sort([['updatedAt', -1]])
+      .exec(function (err, post) {
+        res.status(200).send({ post });
+      });
+  } else {
+    await Post.find({ isDraft: false })
+      .populate('user')
+      .populate('category')
+      .sort([['updatedAt', -1]])
+      .exec(function (err, post) {
+        res.status(200).send({ post });
+      });
+  }
 });
 
 /**
