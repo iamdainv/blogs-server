@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
+const { toJSON } = require('./plugins');
 
 const { Schema } = mongoose;
 
 const commentSchema = mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: false,
-      trim: true,
-    },
     description: {
       type: String,
       required: false,
@@ -20,18 +16,19 @@ const commentSchema = mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    comment: {
+    post: {
       type: Schema.Types.ObjectId,
-      ref: 'Comment',
+      ref: 'Post',
+      required: true,
     },
   },
   {
     timestamps: true,
   }
 );
-
+commentSchema.plugin(toJSON);
 /**
- * @typedef User
+ * @typedef Comment
  */
 const Comment = mongoose.model('Comment', commentSchema);
 

@@ -47,11 +47,11 @@ const getAllIsDraft = catchAsync(async (req, res) => {
 });
 const getPostId = catchAsync(async (req, res) => {
   const { id } = req.params;
-  Post.find({ _id: id })
+  Post.findOne({ _id: id })
     .populate('user')
     .populate('category')
     .exec(function (err, post) {
-      res.status(200).send({ post: post[0] });
+      res.status(200).send({ post });
     });
 });
 
