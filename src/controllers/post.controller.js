@@ -11,12 +11,33 @@ const add = catchAsync(async (req, res) => {
 
 const getAll = catchAsync(async (req, res) => {
   const idCategory = req.query.category || null;
+  let search = req.query.search || null;
+
+  if (search) {
+    // eslint-disable-next-line security/detect-non-literal-regexp
+    search = new RegExp(search, 'i');
+    console.log(search);
+    await Post.find({ $or: [{ title: search }, { description: search }] })
+      .populate('user')
+      .populate('category')
+      .sort([
+        ['numberOfComment', 1],
+        ['updatedAt', -1],
+      ])
+      .exec(function (err, post) {
+        res.status(200).send({ post });
+      });
+    return;
+  }
 
   if (idCategory !== null) {
     await Post.find({ isDraft: false, category: idCategory })
       .populate('user')
       .populate('category')
-      .sort([['updatedAt', -1]])
+      .sort([
+        ['numberOfComment', 1],
+        ['updatedAt', -1],
+      ])
       .exec(function (err, post) {
         res.status(200).send({ post });
       });
@@ -24,7 +45,10 @@ const getAll = catchAsync(async (req, res) => {
     await Post.find({ isDraft: false })
       .populate('user')
       .populate('category')
-      .sort([['updatedAt', -1]])
+      .sort([
+        ['numberOfComment', -1],
+        ['updatedAt', -1],
+      ])
       .exec(function (err, post) {
         res.status(200).send({ post });
       });

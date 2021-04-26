@@ -16,6 +16,10 @@ const portSchema = mongoose.Schema(
     },
     upVote: [],
     downVote: [],
+    numberOfComment: {
+      type: Number,
+      default: 0,
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
