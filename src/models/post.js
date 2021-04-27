@@ -20,6 +20,12 @@ const portSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    likePost: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',

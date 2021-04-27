@@ -6,237 +6,69 @@ const Category = require('../models/category');
 const CATEGORIES = [
   {
     label: 'Bảng tin',
+    image:
+      'https://www.flaticon.com/svg/vstatic/svg/2965/2965879.svg?token=exp=1619500198~hmac=c28f0ddcf31a9c4fb8fae3bf2bcfe626',
     value: 0,
   },
   {
-    label: 'Ăn Uống',
+    label: 'React Js',
+    image:
+      'https://www.flaticon.com/svg/vstatic/svg/1126/1126012.svg?token=exp=1619500153~hmac=260f1af8ade32b67c8d4476b73aedea6',
     value: 1,
   },
   {
-    label: 'Du lichk - Phượt',
+    label: 'Angular',
+    image: 'https://as2.ftcdn.net/jpg/02/95/03/85/500_F_295038583_mn0uxJ6A0YO57HA4xXQqHFUjiW1BcqBE.jpg',
     value: 2,
   },
   {
-    label: 'Tin tức - Thời sự',
+    label: 'C++',
+    image:
+      'https://www.flaticon.com/svg/vstatic/svg/541/541574.svg?token=exp=1619500260~hmac=9b9a0be1e8d62912110f7894f162cba0',
     value: 3,
   },
   {
-    label: 'Chuyện vặt',
+    label: 'C#',
+    image:
+      'https://www.flaticon.com/svg/vstatic/svg/381/381704.svg?token=exp=1619500283~hmac=8d62c67f5980c84dce2b9212ab9d8904',
     value: 4,
   },
   {
     label: 'Hài',
+    image: 'https://image.flaticon.com/icons/png/128/2959/2959113.png',
     value: 5,
   },
   {
     label: 'Reddit',
+    image: 'https://www.flaticon.com/premium-icon/icons/svg/3670/3670226.svg',
     value: 6,
   },
   {
     label: 'Quora',
+    image: 'https://www.flaticon.com/premium-icon/icons/svg/3015/3015827.svg',
     value: 7,
   },
   {
     label: 'Tuổi teen',
+    image: 'https://image.flaticon.com/icons/png/128/1985/1985901.png',
     value: 8,
-  },
-  {
-    label: 'Tình yêu - Tình bạn',
-    value: 9,
-  },
-  {
-    label: 'Hỏi đáp- Tư vẫn',
-    value: 10,
-  },
-  {
-    label: 'Tâm sự - Chuyện đời',
-    value: 11,
-  },
-  {
-    label: 'Ảnh',
-    value: 12,
-  },
-  {
-    label: 'Video',
-    value: 13,
-  },
-  {
-    label: 'Nhạc',
-    value: 14,
-  },
-  {
-    label: 'Phim - TV',
-    value: 15,
-  },
-  {
-    label: 'Thể thao',
-    value: 16,
-  },
-  {
-    label: 'Sức khỏe - Y tế',
-    value: 17,
-  },
-  {
-    label: 'Thời trang - Làm đẹp',
-    value: 18,
-  },
-  {
-    label: 'Mẹo hay',
-    value: 19,
-  },
-  {
-    label: 'Truyền cảm hứng',
-    value: 20,
-  },
-  {
-    label: 'Nghệ thuật',
-    value: 21,
-  },
-  {
-    label: 'Nhiếp ảnh',
-    value: 22,
-  },
-  {
-    label: 'Đời sống',
-    value: 23,
-  },
-  {
-    label: 'Thủ công - Tự làm',
-    value: 24,
-  },
-  {
-    label: 'Vường - Ao - Chuồng',
-    value: 25,
-  },
-  {
-    label: 'Thú Cưng - Động vật',
-    value: 26,
-  },
-  {
-    label: 'Kinh doanh - Khởi nghiệp',
-    value: 27,
-  },
-  {
-    label: 'Chứng khoán - Kinh tế',
-    value: 28,
-  },
-  {
-    label: 'Xe cộ',
-    value: 29,
-  },
-  {
-    label: 'Nhà cửa - Nội thất',
-    value: 30,
-  },
-  {
-    label: 'Phong thủy',
-    value: 31,
-  },
-  {
-    label: 'Kiến trúc - Xây dụng',
-    value: 32,
-  },
-  {
-    label: 'Phong cảnh',
-    value: 33,
-  },
-  {
-    label: 'Học đường - Giáo dục',
-    value: 34,
-  },
-  {
-    label: 'Truyện tranh',
-    value: 35,
-  },
-  {
-    label: 'Sách',
-    value: 36,
-  },
-  {
-    label: 'Thơ',
-    value: 37,
-  },
-  {
-    label: 'Văn - Truyện',
-    value: 38,
-  },
-  {
-    label: 'Ma - Kinh dị',
-    value: 39,
-  },
-  {
-    label: 'Bí ẩn',
-    value: 40,
-  },
-  {
-    label: 'Lịch sử',
-    value: 41,
-  },
-  {
-    label: 'Thiên văn - Địa lý',
-    value: 42,
-  },
-  {
-    label: 'Tôn giáo - Triết học',
-    value: 43,
-  },
-  {
-    label: 'Từ vi - Số mệnh',
-    value: 44,
-  },
-  {
-    label: 'Công Nghệ',
-    value: 45,
-  },
-  {
-    label: 'Lập trình - Phần mềm',
-    value: 46,
-  },
-  {
-    label: 'Game',
-    value: 47,
-  },
-  {
-    label: 'Khoa học',
-    value: 48,
-  },
-  {
-    label: 'Kỹ thuật',
-    value: 49,
-  },
-  {
-    label: 'Toán - Lý - Hoá',
-    value: 50,
-  },
-  {
-    label: 'Việt Nam',
-    value: 51,
-  },
-  {
-    label: 'Thế giới',
-    value: 52,
-  },
-  {
-    label: 'Etc ...',
-    value: 53,
   },
 ];
 
 const add = catchAsync(async (req, res) => {
   const array = [];
-  let start = 4107954;
+
   CATEGORIES.forEach(async (item) => {
     // eslint-disable-next-line no-param-reassign
-    const stringImage = `https://image.flaticon.com/icons/png/128/4107/${start}.png`;
     // eslint-disable-next-line no-param-reassign
     item.id = ObjectId();
     // eslint-disable-next-line no-param-reassign
-    item.image = stringImage;
+    // eslint-disable-next-line no-self-assign
+    item.image = item.image;
     item.name = item.label;
     const c = await Category.create(item);
     array.push(c);
     // eslint-disable-next-line no-plusplus
-    start++;
   });
 
   res.status(httpStatus.CREATED).send({ array });

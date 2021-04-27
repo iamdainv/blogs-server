@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const { toJSON } = require('./plugins');
 
 const categorySchema = mongoose.Schema(
@@ -22,6 +23,7 @@ const categorySchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
 categorySchema.plugin(toJSON);
 /**
  * @typedef Category
