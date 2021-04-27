@@ -6,8 +6,18 @@ const Post = require('../models/post');
 
 const add = catchAsync(async (req, res) => {
   // const { title, description, user, category, isDraft } = req.body;
+  const { id: commentId } = req.body;
+  const parentComment = await Comment.findById(commentId);
+
   const comment = await Comment.create(req.body);
+
+  if (parentComment) {
+    parentComment.comment.push(comment.id);
+    parentComment.save();
+  }
+
   const post = await Post.findOne({ _id: req.body.post });
+
   post.numberOfComment += 1;
   await post.save();
   res.status(httpStatus.CREATED).send({ comment });
@@ -16,15 +26,23 @@ const add = catchAsync(async (req, res) => {
 const getCommentByPost = catchAsync(async (req, res) => {
   const idPost = req.query.post || null;
 
-  await Comment.find({ post: idPost })
+  await Comment.find({ post: idPost, parent: null })
+    .populate({
+      path: 'comment',
+      populate: {
+        path: 'user',
+        model: 'User',
+      },
+    })
     .populate('user')
+
     // .populate('post')
     .sort([
       ['upVote.length', 1],
       ['updatedAt', -1],
     ])
     .exec(function (err, comment) {
-      res.status(200).send({ comment });
+      return res.status(200).send({ comment });
     });
 });
 

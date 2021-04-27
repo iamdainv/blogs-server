@@ -21,12 +21,26 @@ const commentSchema = mongoose.Schema(
       ref: 'Post',
       required: true,
     },
+    parent: {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+    comment: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment',
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
 commentSchema.plugin(toJSON);
+commentSchema.pre('findById', function (next) {
+  this.populate('user');
+  next();
+});
 /**
  * @typedef Comment
  */
