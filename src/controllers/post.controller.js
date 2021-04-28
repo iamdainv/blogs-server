@@ -136,13 +136,14 @@ const changeVote = catchAsync(async (req, res) => {
   // eslint-disable-next-line no-console
 });
 
-const updateDraft = catchAsync(async (req, res) => {
-  const { title, description, category } = req.body;
+const updatePost = catchAsync(async (req, res) => {
+  const { title, description, category, isDraft } = req.body;
   const { id } = req.params;
   const post = await Post.findOne({ _id: id });
   post.title = title;
   post.description = description;
   post.category = category;
+  post.isDraft = isDraft;
   await post.save();
   return res.status(202).send({ post });
 });
@@ -174,8 +175,22 @@ const likePost = catchAsync(async (req, res) => {
 const getPostLikeByUser = catchAsync(async (req, res) => {
   const { user } = req.query;
 
-  const users = await User.findOne({ _id: user }).populate('likePost');
+  const users = await User.findOne({ _id: user })
+    .populate({
+      path: 'likePost',
+      populate: {
+        path: 'user',
+        model: 'User',
+      },
+    })
+    .populate({
+      path: 'likePost',
+      populate: {
+        path: 'category',
+        model: 'Category',
+      },
+    });
 
   return res.status(200).send({ post: users.likePost });
 });
-module.exports = { add, getAll, getPostId, changeVote, getAllIsDraft, updateDraft, deletePost, likePost, getPostLikeByUser };
+module.exports = { add, getAll, getPostId, changeVote, getAllIsDraft, updatePost, deletePost, likePost, getPostLikeByUser };
