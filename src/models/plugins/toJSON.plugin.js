@@ -34,7 +34,7 @@ const toJSON = (schema) => {
       // delete ret.createdAt;
       // delete ret.updatedAt;
       if (ret.image) {
-        ret.image = process.env.url + ret.image;
+        ret.image = process.env.URL + ret.image;
       }
       if (transform) {
         return transform(doc, ret, options);
