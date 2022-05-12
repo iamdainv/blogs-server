@@ -13,7 +13,7 @@ const CATEGORIES = [
   {
     label: 'React Js',
     image:
-      'https://www.flaticon.com/svg/vstatic/svg/1126/1126012.svg?token=exp=1619500153~hmac=260f1af8ade32b67c8d4476b73aedea6',
+      'https://cdn-icons.flaticon.com/png/512/1183/premium/1183672.png?token=exp=1647659253~hmac=22bdd3d542d0b0652a7248de09829e3a',
     value: 1,
   },
   {
@@ -23,34 +23,33 @@ const CATEGORIES = [
   },
   {
     label: 'C++',
-    image:
-      'https://www.flaticon.com/svg/vstatic/svg/541/541574.svg?token=exp=1619500260~hmac=9b9a0be1e8d62912110f7894f162cba0',
+    image: 'https://cdn-icons-png.flaticon.com/128/381/381704.png',
     value: 3,
   },
   {
     label: 'C#',
-    image:
-      'https://www.flaticon.com/svg/vstatic/svg/381/381704.svg?token=exp=1619500283~hmac=8d62c67f5980c84dce2b9212ab9d8904',
+    image: 'https://cdn-icons-png.flaticon.com/128/381/381704.png',
     value: 4,
   },
   {
     label: 'Hài',
-    image: 'https://image.flaticon.com/icons/png/128/2959/2959113.png',
+    image: 'https://t3.ftcdn.net/jpg/02/25/12/76/240_F_225127687_seBj7cU3fRT28NX5zzpUn3JDz4kbWQ3E.jpg',
     value: 5,
   },
   {
     label: 'Reddit',
-    image: 'https://www.flaticon.com/premium-icon/icons/svg/3670/3670226.svg',
+    image:
+      'https://cdn-icons.flaticon.com/png/128/3536/premium/3536761.png?token=exp=1647659359~hmac=77c72cdd3d989f4715e9b00d28265339',
     value: 6,
   },
   {
     label: 'Quora',
-    image: 'https://www.flaticon.com/premium-icon/icons/svg/3015/3015827.svg',
+    image: 'https://cdn-icons-png.flaticon.com/128/174/174865.png',
     value: 7,
   },
   {
     label: 'Tuổi teen',
-    image: 'https://image.flaticon.com/icons/png/128/1985/1985901.png',
+    image: 'https://cdn-icons-png.flaticon.com/128/2793/2793541.png',
     value: 8,
   },
 ];
@@ -62,10 +61,7 @@ const add = catchAsync(async (req, res) => {
     // eslint-disable-next-line no-param-reassign
     // eslint-disable-next-line no-param-reassign
     item.id = ObjectId();
-    // eslint-disable-next-line no-param-reassign
-    // eslint-disable-next-line no-self-assign
-    item.image = item.image;
-    item.name = item.label;
+
     const c = await Category.create(item);
     array.push(c);
     // eslint-disable-next-line no-plusplus

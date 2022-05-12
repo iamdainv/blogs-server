@@ -52,7 +52,7 @@ if (config.env === 'production') {
 }
 
 // v1 api routes
-app.use('/v1', routes);
+app.use('', routes);
 app.use('/static', express.static(path.join(__dirname, 'upload')));
 
 // send back a 404 error for any unknown api request

@@ -40,6 +40,15 @@ const getUserById = async (id) => {
 
 /**
  * Get user by email
+ * @param {string} phone
+ * @returns {Promise<User>}
+ */
+const getUserByPhoneNumber = async (phone) => {
+  return User.findOne({ phone });
+};
+
+/**
+ * Get user by email
  * @param {string} email
  * @returns {Promise<User>}
  */
@@ -87,4 +96,5 @@ module.exports = {
   getUserByEmail,
   updateUserById,
   deleteUserById,
+  getUserByPhoneNumber,
 };

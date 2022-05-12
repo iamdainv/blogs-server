@@ -13,15 +13,15 @@ const {
 
 const router = express.Router();
 
-router.get('/like', getPostLikeByUser);
-router.post('/add', add);
-router.get('/', getAll);
-router.get('/draft/:id', getAllIsDraft);
-router.put('/update/:id', updatePost);
-router.get('/:id', getPostId);
-router.put('/:id', changeVote);
-router.delete('/:id', deletePost);
-router.put('/like/:id', likePost);
+router.get('/v1/post/like', getPostLikeByUser);
+router.post('/v1/post/add', add);
+router.get('/v1/post/', getAll);
+router.get('/v1/post/draft/:id', getAllIsDraft);
+router.put('/v1/post/update/:id', updatePost);
+router.get('/v1/post/:id', getPostId);
+router.put('/v1/post/:id', changeVote);
+router.delete('/v1/post/:id', deletePost);
+router.put('/v1/post/like/:id', likePost);
 
 module.exports = router;
 /**

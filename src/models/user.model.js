@@ -24,7 +24,15 @@ const userSchema = mongoose.Schema(
         }
       },
     },
-
+    photo: {
+      type: String,
+    },
+    phone: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
     likePost: [
       {
         type: Schema.Types.ObjectId,

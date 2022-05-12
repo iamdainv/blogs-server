@@ -7,12 +7,12 @@ const userController = require('../../controllers/user.controller');
 const router = express.Router();
 
 router
-  .route('/')
+  .route('/v1/users/')
   .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
   .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
 
 router
-  .route('/:userId')
+  .route('/v1/users/:userId')
   .get(userController.getUser)
   .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
   .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);

@@ -49,6 +49,13 @@ const verifyEmail = {
   }),
 };
 
+const verifyCode = {
+  body: Joi.object().keys({
+    toPhoneNumber: Joi.string().required(),
+    code: Joi.string().required(),
+  }),
+};
+
 module.exports = {
   register,
   login,
@@ -57,4 +64,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   verifyEmail,
+  verifyCode,
 };

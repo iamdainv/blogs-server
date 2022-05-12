@@ -11,23 +11,23 @@ const router = express.Router();
 
 const defaultRoutes = [
   {
-    path: '/auth',
+    path: '',
     route: authRoute,
   },
   {
-    path: '/users',
+    path: '',
     route: userRoute,
   },
   {
-    path: '/category',
+    path: '',
     route: categoryRoute,
   },
   {
-    path: '/post',
+    path: '',
     route: postRoute,
   },
   {
-    path: '/comment',
+    path: '',
     route: commentRoute,
   },
 ];

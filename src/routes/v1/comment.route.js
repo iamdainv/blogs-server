@@ -3,8 +3,8 @@ const { add, getCommentByPost, changeVote, deleteComment } = require('../../cont
 
 const router = express.Router();
 
-router.post('/', add);
-router.get('/', getCommentByPost);
-router.put('/:id', changeVote);
-router.delete('/:id', deleteComment);
+router.post('/v1/comment/', add);
+router.get('/v1/comment/', getCommentByPost);
+router.put('/v1/comment/:id', changeVote);
+router.delete('/v1/comment/:id', deleteComment);
 module.exports = router;

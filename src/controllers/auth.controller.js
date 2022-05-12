@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
-const { authService, userService, tokenService, emailService } = require('../services');
+const { authService, userService, tokenService, emailService, phoneService } = require('../services');
 
 const register = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -14,6 +14,30 @@ const login = catchAsync(async (req, res) => {
   const tokens = await tokenService.generateAuthTokens(user);
 
   res.send({ user, tokens });
+});
+
+const createVerifyCode = catchAsync(async (req, res) => {
+  const { fromNumberPhone } = req.query;
+  const code = await phoneService.createVerityPhoneNumber(`+${fromNumberPhone}`, 'sms');
+
+  res.send({ code });
+});
+
+const verifyCode = catchAsync(async (req, res) => {
+  const { toPhoneNumber, code } = req.body;
+  try {
+    const result = await phoneService.verityPhoneNumber(`+${toPhoneNumber}`, code);
+
+    if (result.status === 'approved') {
+      const user = await authService.loginUserWithPhoneNumber(toPhoneNumber);
+      const tokens = await tokenService.generateAuthTokens(user);
+
+      return res.send({ tokens, user });
+    }
+  } catch (error) {
+    return res.send({ message: error, code: httpStatus[401] });
+  }
+  return res.send({ message: 'Invalid Code', code: httpStatus[401] });
 });
 
 const logout = catchAsync(async (req, res) => {
@@ -48,6 +72,10 @@ const verifyEmail = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const loginToken = catchAsync(async (req, res) => {
+  return res.status(200).send({ result: { user: req.user } });
+});
+
 module.exports = {
   register,
   login,
@@ -57,4 +85,7 @@ module.exports = {
   resetPassword,
   sendVerificationEmail,
   verifyEmail,
+  createVerifyCode,
+  verifyCode,
+  loginToken,
 };

@@ -20,6 +20,20 @@ const loginUserWithEmailAndPassword = async (email, password) => {
 };
 
 /**
+ * Login with username and password
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise<User>}
+ */
+const loginUserWithPhoneNumber = async (phone) => {
+  const user = await userService.getUserByPhoneNumber(phone);
+  if (!user) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
+  }
+  return user;
+};
+
+/**
  * Logout
  * @param {string} refreshToken
  * @returns {Promise}
@@ -96,4 +110,5 @@ module.exports = {
   refreshAuth,
   resetPassword,
   verifyEmail,
+  loginUserWithPhoneNumber,
 };
